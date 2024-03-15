@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import puppeteer from "puppeteer";
+import html_to_pdf from 'html-pdf-node';
 
 export const sendMarkSheet = async (req, res) => {
   try {
@@ -135,11 +136,12 @@ export const sendMarkSheet = async (req, res) => {
 
         `;
 
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.setContent(htmlContent);
-        const pdfBuffer = await page.pdf({ format: "Letter", landscape: true });
-        await browser.close();
+        // const browser = await puppeteer.launch();
+        // const page = await browser.newPage();
+        // await page.setContent(htmlContent);
+        // const pdfBuffer = await page.pdf({ format: "Letter", landscape: true });
+        // await browser.close();
+        const pdfBuffer = await html_to_pdf.generatePdf({ content: htmlContent }, { format: "A4" });
 
         await transporter.sendMail({
           from: process.env.USER_PASS,
