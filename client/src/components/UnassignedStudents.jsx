@@ -34,7 +34,7 @@ const FinalList = () => {
 
     const handleSendMail = async () => {
         try {
-            const response = await axios.post(`http://localhost:3001/student/sendEmail`, {
+            const response = await axios.post(`https://dashboard-qye7.onrender.com/student/sendEmail`, {
                 students: studentList
             });
             console.log(response.data);
@@ -51,7 +51,7 @@ const FinalList = () => {
         // Function to fetch the final list of students
         const fetchFinalList = async (mentorId) => {
             try {
-                const response = await axios.get(`http://localhost:3001/student/getFinalStudents/${mentorId}`);
+                const response = await axios.get(`https://dashboard-qye7.onrender.com/student/getFinalStudents/${mentorId}`);
                 return response.data.students;
             } catch (error) {
                 console.error('Error fetching final list:', error);

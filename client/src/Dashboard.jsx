@@ -57,13 +57,13 @@ export const Dropdown = () => {
 
 
   const getStudent = async () => {
-    const response = await axios.get('http://localhost:3001/student/getStudent');
+    const response = await axios.get('https://dashboard-qye7.onrender.com/student/getStudent');
     //console.log(response.data);
     setStudents(response.data);
   }
 
   const getMentor = async () => {
-    const response = await axios.get('http://localhost:3001/mentor');
+    const response = await axios.get('https://dashboard-qye7.onrender.com/mentor');
     //console.log(response.data);
     setMentor(response.data);
   }
@@ -99,7 +99,7 @@ export const Dropdown = () => {
     const selectedMentorObject = mentor.find(mentor => mentor.name === selectedMentorName);
     setSelectedMentor(selectedMentorObject);
     setSubmitSuccessful(false);
-    const res = await axios.get(`http://localhost:3001/mentor/listStudents/${selectedMentorObject._id}`);
+    const res = await axios.get(`https://dashboard-qye7.onrender.com/mentor/listStudents/${selectedMentorObject._id}`);
     console.log(res.data.students);
     setOnScreenStudent(res.data.students);
 
@@ -109,7 +109,7 @@ export const Dropdown = () => {
     if (OnScreenStudent.length >= 3 && OnScreenStudent.length <= 4) {
       setSubmitSuccessful(true);
       //alert(`Mentor: ${selectedMentor}, Students: ${OnScreenStudent.join(', ')}`);
-      const response = await axios.patch('http://localhost:3001/student/assign', {
+      const response = await axios.patch('https://dashboard-qye7.onrender.com/student/assign', {
         students: OnScreenStudent,
         mentor: selectedMentor
       })
@@ -124,7 +124,7 @@ export const Dropdown = () => {
   const handleRemove = async (id) => {
     const student = OnScreenStudent.find(student => student._id === id);
     setStudents(prevStudents => [...prevStudents, student]);
-    const response = await axios.post('http://localhost:3001/student/removeAssigned', {
+    const response = await axios.post('https://dashboard-qye7.onrender.com/student/removeAssigned', {
       studentId: id,
       mentorId: selectedMentor._id
     });

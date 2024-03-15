@@ -56,7 +56,7 @@ export default function StudentTable(props) {
     currentStudent.marks.execution = execution;
     currentStudent.marks.viva = viva;
 
-    const response = axios.patch(`http://localhost:3001/evaluations/${currentStudent._id}`, {
+    const response = axios.patch(`https://dashboard-qye7.onrender.com/evaluations/${currentStudent._id}`, {
       studentId: currentStudent._id,
       marks,
     });
@@ -79,7 +79,7 @@ export default function StudentTable(props) {
     // }
     // Send PATCH request to server
     try{
-    const response = await axios.patch(`http://localhost:3001/student/${student._id}/lock`, {
+    const response = await axios.patch(`https://dashboard-qye7.onrender.com/student/${student._id}/lock`, {
       mentorId: props.selectedMentor._id
     });
     console.log(response.status, response.data.message);
